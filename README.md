@@ -72,7 +72,7 @@ class App {
                     "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                     "-----END PRIVATE KEY-----"
 
-            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", publicKey = publicKey, iss = "rizki", sub = "https://rizkimufrizal.github.io/")
+            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", publicKey = publicKey)
 
             println(encryptedString)
 
@@ -131,7 +131,7 @@ class App {
                 "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                 "-----END PRIVATE KEY-----"
 
-        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "rizki", "https://rizkimufrizal.github.io/")
+        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey)
 
         println(encryptedString)
 
@@ -189,7 +189,7 @@ public class App {
                 "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                 "-----END PRIVATE KEY-----";
 
-        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "rizki", "https://rizkimufrizal.github.io/");
+        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey);
 
         System.out.println(encryptedString);
 
