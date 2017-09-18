@@ -4,12 +4,12 @@ import com.nimbusds.jose.EncryptionMethod
 import com.nimbusds.jose.JOSEException
 import com.nimbusds.jose.JWEAlgorithm
 import com.nimbusds.jose.JWEHeader
+import com.nimbusds.jose.JWEObject
+import com.nimbusds.jose.Payload
 import com.nimbusds.jose.crypto.RSAEncrypter
-import com.nimbusds.jwt.EncryptedJWT
-import com.nimbusds.jwt.JWTClaimsSet
 import org.rizki.mufrizal.jwt.rsa.reader.PublicKeyReader
-import java.util.Date
-import java.util.UUID
+import java.security.NoSuchAlgorithmException
+import java.security.spec.InvalidKeySpecException
 
 /**
  *
@@ -25,27 +25,21 @@ import java.util.UUID
 class EncryptGenerator {
     companion object {
         @JvmStatic
-        fun generateEncrypt(plainText: String, publicKey: String, iss: String, sub: String): String? {
+        fun generateEncrypt(plainText: String, publicKey: String): String? {
             try {
-                val NOW = Date(Date().time / 1000 * 1000)
-                val exp = Date(NOW.time + 1000 * 60 * 10)
-                val jti = UUID.randomUUID().toString()
-
-                val jwtClaims = JWTClaimsSet.Builder().issuer(iss).subject(sub).audience(plainText).expirationTime(exp).notBeforeTime(NOW).issueTime(NOW).jwtID(jti).build()
-
                 val header = JWEHeader(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256CBC_HS512)
-
-                val jwt = EncryptedJWT(header, jwtClaims)
-
-                val encrypter = RSAEncrypter(PublicKeyReader.get(publicKey))
-
-                jwt.encrypt(encrypter)
-
-                return jwt.serialize()
+                val payload = Payload(plainText)
+                val jweObject = JWEObject(header, payload)
+                val encrypter = RSAEncrypter(PublicKeyReader.get(publicKey)!!)
+                jweObject.encrypt(encrypter)
+                return jweObject.serialize()
+            } catch (ex: NoSuchAlgorithmException) {
+                ex.printStackTrace()
+            } catch (ex: InvalidKeySpecException) {
+                ex.printStackTrace()
             } catch (ex: JOSEException) {
                 ex.printStackTrace()
             }
-
             return null
         }
     }
