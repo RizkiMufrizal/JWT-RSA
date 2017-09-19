@@ -22,10 +22,10 @@ import java.text.ParseException
 class DecryptGenerator {
     companion object {
         @JvmStatic
-        fun generateDecrypt(encryptText: String, privateKey: String): String? {
+        fun generateDecrypt(encryptText: String? = null, privateKey: String? = null): String? {
             try {
                 val jWEObject = JWEObject.parse(encryptText)
-                val decrypter = RSADecrypter(PrivateKeyReader.get(privateKey)!!)
+                val decrypter = RSADecrypter(PrivateKeyReader.get(privateKey))
                 jWEObject.decrypt(decrypter)
                 return jWEObject.payload.toString()
             } catch (ex: ParseException) {

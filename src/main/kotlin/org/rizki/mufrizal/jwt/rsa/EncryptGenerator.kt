@@ -25,12 +25,12 @@ import java.security.spec.InvalidKeySpecException
 class EncryptGenerator {
     companion object {
         @JvmStatic
-        fun generateEncrypt(plainText: String, publicKey: String): String? {
+        fun generateEncrypt(plainText: String? = null, publicKey: String? = null): String? {
             try {
                 val header = JWEHeader(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256CBC_HS512)
                 val payload = Payload(plainText)
                 val jweObject = JWEObject(header, payload)
-                val encrypter = RSAEncrypter(PublicKeyReader.get(publicKey)!!)
+                val encrypter = RSAEncrypter(PublicKeyReader.get(publicKey))
                 jweObject.encrypt(encrypter)
                 return jweObject.serialize()
             } catch (ex: NoSuchAlgorithmException) {
