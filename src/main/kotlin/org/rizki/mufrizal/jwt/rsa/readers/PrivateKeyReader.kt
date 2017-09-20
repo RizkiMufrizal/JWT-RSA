@@ -1,4 +1,4 @@
-package org.rizki.mufrizal.jwt.rsa.reader
+package org.rizki.mufrizal.jwt.rsa.readers
 
 import java.security.spec.InvalidKeySpecException
 import java.security.NoSuchAlgorithmException
@@ -14,7 +14,7 @@ import java.util.Base64
  * @Since 14 September 2017
  * @Time 1:19 PM
  * @Project JWT-RSA
- * @Package org.rizki.mufrizal.jwt.rsa.reader
+ * @Package org.rizki.mufrizal.jwt.rsa.readers
  * @File PrivateKeyReader
  *
  */
@@ -33,7 +33,6 @@ class PrivateKeyReader {
             } catch (ex: InvalidKeySpecException) {
                 ex.printStackTrace()
             }
-
             return null
         }
     }
