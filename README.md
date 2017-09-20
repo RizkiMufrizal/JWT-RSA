@@ -24,6 +24,8 @@ convert private key to pkcs8 format in order to import it from kotlin
 openssl pkcs8 -topk8 -in private.pem -inform pem -out private_key_pkcs8.pem -outform pem -nocrypt -passin pass:"rizkimufrizal"
 ```
 
+## Example Using String
+
 this for example when using kotlin
 ```kotlin
 import org.rizki.mufrizal.jwt.rsa.DecryptGenerator
@@ -194,6 +196,68 @@ public class App {
         System.out.println(encryptedString);
 
         String plainText = DecryptGenerator.generateDecrypt(encryptedString, privateKey);
+
+        System.out.println(plainText);
+    }
+}
+
+```
+
+## Example Using From File
+
+this for example when using kotlin
+```kotlin
+import org.rizki.mufrizal.jwt.rsa.DecryptGenerator
+import org.rizki.mufrizal.jwt.rsa.EncryptGenerator
+
+class App {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", path = "/Users/rizkimufrizal/Documents/keys", fileName = "public.pem")
+
+            println(encryptedString)
+
+            val plainText = encryptedString?.let { DecryptGenerator.generateDecrypt(encryptText = it, path = "/Users/rizkimufrizal/Documents/keys", fileName = "private_key_pkcs8.pem") }
+
+            println(plainText)
+        }
+    }
+}
+```
+
+this for example when using groovy
+
+```groovy
+import org.rizki.mufrizal.jwt.rsa.DecryptGenerator
+import org.rizki.mufrizal.jwt.rsa.EncryptGenerator
+
+class App {
+    static void main(String[] args) {
+        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem")
+
+        println(encryptedString)
+
+        def plainText = DecryptGenerator.generateDecrypt(encryptedString, "/Users/rizkimufrizal/Documents/keys", "private_key_pkcs8.pem")
+
+        println(plainText)
+    }
+}
+```
+
+this for example when using java
+
+```java
+import org.rizki.mufrizal.jwt.rsa.DecryptGenerator;
+import org.rizki.mufrizal.jwt.rsa.EncryptGenerator;
+
+public class App {
+    public static void main(String[] args) {
+        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem");
+
+        System.out.println(encryptedString);
+
+        String plainText = DecryptGenerator.generateDecrypt(encryptedString, "/Users/rizkimufrizal/Documents/keys", "private_key_pkcs8.pem");
 
         System.out.println(plainText);
     }
