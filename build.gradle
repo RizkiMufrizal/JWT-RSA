@@ -2,7 +2,7 @@ group 'org.rizki.mufrizal.jwt.rsa'
 version '0.0.2'
 
 buildscript {
-    ext.kotlin_version = '1.1.4-3'
+    ext.kotlin_version = '1.1.50'
     ext.nimbus_jose_jwt = '5.1'
 
     repositories {
