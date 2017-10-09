@@ -24,6 +24,14 @@ convert private key to pkcs8 format in order to import it from kotlin
 openssl pkcs8 -topk8 -in private.pem -inform pem -out private_key_pkcs8.pem -outform pem -nocrypt -passin pass:"rizkimufrizal"
 ```
 
+or convert private key to unecnrypted format in order to import it from kotlin
+
+```bash
+openssl rsa -in private.pem -out private_unencrypted.pem -outform PEM -passin pass:"rizkimufrizal"
+```
+
+You can use one of the private keys. In this example, we use private key in pkcs8 format.
+
 ## Example Using String
 
 this for example when using kotlin
