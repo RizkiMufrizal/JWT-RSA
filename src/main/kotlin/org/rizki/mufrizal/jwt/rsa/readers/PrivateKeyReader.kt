@@ -25,6 +25,7 @@ class PrivateKeyReader {
             var privateKeyContent = privateKey
             try {
                 privateKeyContent = privateKeyContent?.replace("\\n".toRegex(), "")?.replace("-----BEGIN PRIVATE KEY-----", "")?.replace("-----END PRIVATE KEY-----", "")
+                privateKeyContent = privateKeyContent?.replace("\\n".toRegex(), "")?.replace("-----BEGIN RSA PRIVATE KEY-----", "")?.replace("-----END RSA PRIVATE KEY-----", "")
                 val kf = KeyFactory.getInstance("RSA")
                 val keySpecPKCS8 = PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent))
                 return kf.generatePrivate(keySpecPKCS8) as RSAPrivateKey
