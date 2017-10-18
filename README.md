@@ -36,28 +36,30 @@ You can use one of the private keys. In this example, we use private key in pkcs
 
 You can use of this list algorithm :
 
-* RSA_OAEP_256
+* RSA1_5
+* RSA-OAEP
+* RSA-OAEP-256
 * A128KW
 * A128GCMKW
 * A256KW
 * A256GCMKW
 * DIR
-* ECDH_ES
-* ECDH_ES_A128KW
-* ECDH_ES_A192KW
-* ECDH_ES_A256KW
-* PBES2_HS256_A128KW
-* PBES2_HS384_A192KW
-* PBES2_HS512_A256KW
+* ECDH-ES
+* ECDH-ES+A128KW
+* ECDH-ES+A192KW
+* ECDH-ES+A256KW
+* PBES2-HS256+A128KW
+* PBES2-HS384+A192KW
+* PBES2-HS512+A256KW
 
 You can use of this list encryption methods :
 
 * A128GCM
 * A192GCM
 * A256GCM
-* A128CBC_HS256
-* A192CBC_HS384
-* A256CBC_HS512
+* A128CBC-HS256
+* A192CBC-HS384
+* A256CBC-HS512
 
 ## Example Using String
 
@@ -109,7 +111,7 @@ class App {
                     "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                     "-----END PRIVATE KEY-----"
 
-            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", publicKey = publicKey, jWEAlgorithm = "RSA_OAEP_256", encryptionMethod = "A256CBC_HS512")
+            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", publicKey = publicKey, jWEAlgorithm = "RSA-OAEP-256", encryptionMethod = "A256CBC-HS512")
 
             println(encryptedString)
 
@@ -168,7 +170,7 @@ class App {
                 "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                 "-----END PRIVATE KEY-----"
 
-        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "RSA_OAEP_256", "A256CBC_HS512")
+        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "RSA-OAEP-256", "A256CBC-HS512")
 
         println(encryptedString)
 
@@ -226,7 +228,7 @@ public class App {
                 "QEikiQBuOsBXYRFQzOvkrzeriA==\n" +
                 "-----END PRIVATE KEY-----";
 
-        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "RSA_OAEP_256", "A256CBC_HS512");
+        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", publicKey, "RSA-OAEP-256", "A256CBC-HS512");
 
         System.out.println(encryptedString);
 
@@ -249,7 +251,7 @@ class App {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", path = "/Users/rizkimufrizal/Documents/keys", fileName = "public.pem", jWEAlgorithm = "RSA_OAEP_256", encryptionMethod = "A256CBC_HS512")
+            val encryptedString = EncryptGenerator.generateEncrypt(plainText = "Hy Rizki Mufrizal", path = "/Users/rizkimufrizal/Documents/keys", fileName = "public.pem", jWEAlgorithm = "RSA-OAEP-256", encryptionMethod = "A256CBC-HS512")
 
             println(encryptedString)
 
@@ -269,7 +271,7 @@ import org.rizki.mufrizal.jwt.rsa.EncryptGenerator
 
 class App {
     static void main(String[] args) {
-        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem", "RSA_OAEP_256", "A256CBC_HS512")
+        def encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem", "RSA-OAEP-256", "A256CBC-HS512")
 
         println(encryptedString)
 
@@ -288,7 +290,7 @@ import org.rizki.mufrizal.jwt.rsa.EncryptGenerator;
 
 public class App {
     public static void main(String[] args) {
-        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem", "RSA_OAEP_256", "A256CBC_HS512");
+        String encryptedString = EncryptGenerator.generateEncrypt("Hy Rizki Mufrizal", "/Users/rizkimufrizal/Documents/keys", "public.pem", "RSA-OAEP-256", "A256CBC-HS512");
 
         System.out.println(encryptedString);
 
