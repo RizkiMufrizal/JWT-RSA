@@ -28,9 +28,9 @@ import java.security.spec.InvalidKeySpecException
 class EncryptGenerator {
     companion object {
         @JvmStatic
-        fun generateEncrypt(plainText: String? = null, publicKey: String? = null): String? {
+        fun generateEncrypt(plainText: String? = null, publicKey: String? = null, jWEAlgorithm: String? = null, encryptionMethod: String? = null): String? {
             try {
-                val header = JWEHeader(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256CBC_HS512)
+                val header = JWEHeader(JWEAlgorithm.parse(jWEAlgorithm), EncryptionMethod.parse(encryptionMethod))
                 val payload = Payload(plainText)
                 val jweObject = JWEObject(header, payload)
                 val publicKeyReader = PublicKeyReader.get(publicKey)
@@ -48,9 +48,9 @@ class EncryptGenerator {
         }
 
         @JvmStatic
-        fun generateEncrypt(plainText: String? = null, path: String? = null, fileName: String? = null): String? {
+        fun generateEncrypt(plainText: String? = null, path: String? = null, fileName: String? = null, jWEAlgorithm: String? = null, encryptionMethod: String? = null): String? {
             try {
-                val header = JWEHeader(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256CBC_HS512)
+                val header = JWEHeader(JWEAlgorithm.parse(jWEAlgorithm), EncryptionMethod.parse(encryptionMethod))
                 val payload = Payload(plainText)
                 val jweObject = JWEObject(header, payload)
                 val pathSeparator = if (path?.isEndSeparator() == false) "$path${File.separator}$fileName" else "$path$fileName"
